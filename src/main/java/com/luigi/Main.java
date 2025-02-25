@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // Using a 2D array: {coffee name, price}
         String[][] coffeeMenu = {
                 {"Espresso", "50.0"},
                 {"Latte", "70.0"},
@@ -40,7 +39,6 @@ public class Main {
             System.out.println(quantity + " x " + coffeeMenu[choose - 1][0] + " added to your order.\n");
         }
 
-        // Generate Receipt
         String receiptHeader = "\n----Coffee Order Receipt----\n";
         String receiptBody = "";
         String receiptFooter = "------------------------------\n";
