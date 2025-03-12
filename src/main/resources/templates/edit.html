@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/update" method="post">
+  <input type="hidden" name="id" th:value="${coffee.id}}">
+  <label>Name: <input type="text" name="name" th:value="${coffee.name}" required></label><br>
+  <label>Type: <input type="text" name="type" th:value="${coffee.type}" required></label><br>
+  <label>Size: <input type="text" name="size" th:value="${coffee.size}" required></label><br>
+  <label>Price: <input type="text" name="price" th:value="${coffee.price}" required></label><br>
+  <label>Roast Level: <input type="text" name="roastLevel" th:value="${coffee.roastLevel}" required></label><br>
+  <label>Brew Method: <input type="text" name="brewMethod" th:value="${coffee.brewMethod}" required></label><br>
+  <button type="submit">Update Coffee</button>
+</form>
+<a href="/">Back to List</a>
+</body>
+</html>
