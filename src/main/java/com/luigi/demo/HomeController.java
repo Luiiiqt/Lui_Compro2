@@ -1,4 +1,5 @@
 package com.luigi.demo;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +28,26 @@ public class HomeController {
     }
 
     @PostMapping("/save")
-    public String saveCoffee(@RequestParam String name, @RequestParam String type, @RequestParam String size, @RequestParam double price, @RequestParam String roastLevel, @RequestParam String brewMethod){
+    public String saveCoffee(
+            @RequestParam String name,
+            @RequestParam String type,
+            @RequestParam String size,
+            @RequestParam double price,
+            @RequestParam String roastLevel,
+            @RequestParam String origin,
+            @RequestParam(required = false, defaultValue = "false") boolean isDecaf,
+            @RequestParam int stock,
+            @RequestParam String brewMethod
+    ) {
         int newId = coffeeList.get(coffeeList.size() - 1).getId() + 1;
-        coffeeList.add(new Coffee(newId, name, type, size, price, roastLevel, brewMethod));
+        coffeeList.add(new Coffee(newId, name, type, size, price, roastLevel, origin, isDecaf, stock, new ArrayList<>(), brewMethod));
         return "redirect:/";
     }
 
     @GetMapping("/edit")
-    public String editCoffee(@RequestParam int id, Model model){
-        for (Coffee coffee : coffeeList){
-            if (coffee.getId() == id){
+    public String editCoffee(@RequestParam int id, Model model) {
+        for (Coffee coffee : coffeeList) {
+            if (coffee.getId() == id) {
                 model.addAttribute("coffee", coffee);
                 return "edit";
             }
@@ -45,16 +56,29 @@ public class HomeController {
     }
 
     @PostMapping("/update")
-    public String updateStudent(@RequestParam int id, @RequestParam String name, @RequestParam String type, @RequestParam String size, @RequestParam double price, @RequestParam String roastLevel, @RequestParam String brewMethod, Model model){
-        for (Coffee coffee : coffeeList){
-            if (coffee.getId() == id){
+    public String updateCoffee(
+            @RequestParam int id,
+            @RequestParam String name,
+            @RequestParam String type,
+            @RequestParam String size,
+            @RequestParam double price,
+            @RequestParam String roastLevel,
+            @RequestParam String origin,
+            @RequestParam(required = false, defaultValue = "false") boolean isDecaf,
+            @RequestParam int stock,
+            @RequestParam String brewMethod
+    ) {
+        for (Coffee coffee : coffeeList) {
+            if (coffee.getId() == id) {
                 coffee.setName(name);
                 coffee.setType(type);
                 coffee.setSize(size);
                 coffee.setPrice(price);
                 coffee.setRoastLevel(roastLevel);
+                coffee.setOrigin(origin);
+                coffee.setDecaf(isDecaf);
+                coffee.setStock(stock);
                 coffee.setBrewMethod(brewMethod);
-                model.addAttribute("coffee", coffee);
                 break;
             }
         }

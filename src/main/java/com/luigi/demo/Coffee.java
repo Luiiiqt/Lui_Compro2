@@ -15,6 +15,7 @@ public class Coffee {
     private List<String> flavorNotes;
     private String brewMethod;
 
+    // Full Constructor
     public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
         this.id = id;
         this.name = name;
@@ -29,12 +30,19 @@ public class Coffee {
         this.brewMethod = brewMethod;
     }
 
-    public Coffee(int newId, String name, String type, String size, double price, String roastLevel, String brewMethod) {
-
+    // Constructor with fewer parameters
+    public Coffee(int id, String name, String type, String size, double price, String roastLevel, String brewMethod) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.price = price;
+        this.roastLevel = roastLevel;
+        this.brewMethod = brewMethod;
     }
 
     public int getId() { return id; }
-    public void setId(int id) { this.id = id;}
+    public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -52,9 +60,16 @@ public class Coffee {
     public void setRoastLevel(String roastLevel) { this.roastLevel = roastLevel; }
 
     public String getOrigin() { return origin; }
+    public void setOrigin(String origin) { this.origin = origin; }
+
     public boolean isDecaf() { return isDecaf; }
+    public void setDecaf(boolean isDecaf) { this.isDecaf = isDecaf; }
+
     public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
+
     public List<String> getFlavorNotes() { return flavorNotes; }
+    public void setFlavorNotes(List<String> flavorNotes) { this.flavorNotes = flavorNotes; }
 
     public String getBrewMethod() { return brewMethod; }
     public void setBrewMethod(String brewMethod) { this.brewMethod = brewMethod; }

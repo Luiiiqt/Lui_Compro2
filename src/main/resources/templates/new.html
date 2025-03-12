@@ -2,18 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add New Coffee</title>
 </head>
 <body>
+
+<h1>Add New Coffee</h1>
+
 <form action="/save" method="post">
-  <label>Name: <input type="text" name="name" required></label><br>
-  <label>Type: <input type="text" name="type" required></label><br>
-  <label>Size: <input type="text" name="size" required></label><br>
-  <label>Price: <input type="text" name="price" required></label><br>
-  <label>Roast Level: <input type="text" name="roastLevel" required></label><br>
-  <label>Brew Method: <input type="text" name="brewMethod" required></label><br>
-  <button type="submit">Add Coffee</button>
+    <label>Name: <input type="text" name="name" required></label><br>
+    <label>Type: <input type="text" name="type" required></label><br>
+    <label>Size: <input type="text" name="size" required></label><br>
+    <label>Price: <input type="number" step="0.01" name="price" required></label><br>
+    <label>Roast Level: <input type="text" name="roastLevel" required></label><br>
+    <label>Origin: <input type="text" name="origin" required></label><br>
+
+    <label>Decaf:
+        <input type="checkbox" name="isDecaf" value="true">
+    </label><br>
+    <input type="hidden" name="isDecaf" value="false">  <!-- Ensures 'false' if unchecked -->
+
+    <label>Stock: <input type="number" name="stock" required></label><br>
+    <label>Brew Method: <input type="text" name="brewMethod" required></label><br>
+
+    <button type="submit">Add Coffee</button>
 </form>
+
+<br>
 <a href="/">Back to List</a>
+
 </body>
 </html>

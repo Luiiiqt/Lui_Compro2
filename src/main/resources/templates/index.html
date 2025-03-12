@@ -4,13 +4,8 @@
     <title>Coffee List</title>
 </head>
 <body>
+
 <h1>Available Coffees</h1>
-<ul>
-    <li th:each="coffee : ${coffees}">
-        <span th:text="${coffee.name}"></span>
-        <a th:href="@{/delete(id=${coffee.id})}">Delete</a>
-    </li>
-</ul>
 
 <table border="1">
     <tr>
@@ -21,8 +16,9 @@
         <th>Price</th>
         <th>Roast Level</th>
         <th>Brew Method</th>
+        <th>Actions</th>
     </tr>
-    <tr th:each="coffee : ${coffeeList}">
+    <tr th:each="coffee : ${coffees}">
         <td th:text="${coffee.id}"></td>
         <td th:text="${coffee.name}"></td>
         <td th:text="${coffee.type}"></td>
@@ -31,34 +27,13 @@
         <td th:text="${coffee.roastLevel}"></td>
         <td th:text="${coffee.brewMethod}"></td>
         <td>
+            <a th:href="@{/edit(id=${coffee.id})}">Edit</a> |
             <a th:href="@{/delete(id=${coffee.id})}" onclick="return confirm('Are you sure?');">Delete</a>
         </td>
     </tr>
 </table>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Coffee</th>
-        <th>Type</th>
-        <th>Size</th>
-        <th>Price</th>
-        <th>Roast Level</th>
-        <th>Brew Method</th>
-    </tr>
-    <tr th:each="coffee : ${coffeeList}">
-        <td th:text="${coffee.id}"></td>
-        <td th:text="${coffee.name}"></td>
-        <td th:text="${coffee.type}"></td>
-        <td th:text="${coffee.size}"></td>
-        <td th:text="${coffee.price}"></td>
-        <td th:text="${coffee.roastLevel}"></td>
-        <td th:text="${coffee.brewMethod}"></td>
-        <td>
-            <a th:href="@{/edit(id=${coffee.id})}">Edit</a>
-        </td>
-    </tr>
-</table>
+<br>
 <a href="/add">Add New Coffee</a>
 
 </body>
