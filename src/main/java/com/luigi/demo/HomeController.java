@@ -37,6 +37,7 @@ public class HomeController {
             @RequestParam String origin,
             @RequestParam(required = false, defaultValue = "false") boolean isDecaf,
             @RequestParam int stock,
+            @RequestParam List<String> flavorNotes,
             @RequestParam String brewMethod
     ) {
         int newId = coffeeList.get(coffeeList.size() - 1).getId() + 1;
@@ -66,6 +67,7 @@ public class HomeController {
             @RequestParam String origin,
             @RequestParam(required = false, defaultValue = "false") boolean isDecaf,
             @RequestParam int stock,
+            @RequestParam List<String> flavorNotes,
             @RequestParam String brewMethod
     ) {
         for (Coffee coffee : coffeeList) {
@@ -78,6 +80,7 @@ public class HomeController {
                 coffee.setOrigin(origin);
                 coffee.setDecaf(isDecaf);
                 coffee.setStock(stock);
+                coffee.setFlavorNotes(flavorNotes);
                 coffee.setBrewMethod(brewMethod);
                 break;
             }
