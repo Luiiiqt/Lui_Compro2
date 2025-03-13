@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Edit Coffee</title>
@@ -19,6 +19,7 @@
     <label>Origin: <input type="text" name="origin" th:value="${coffee.origin}" required></label><br>
     <label>Decaf: <input type="checkbox" name="isDecaf" th:checked="${coffee.decaf}"></label><br>
     <label>Stock: <input type="number" name="stock" th:value="${coffee.stock}" required></label><br>
+    <label>Flavor Notes: <input type="text" name="flavorNotes" th:value="${coffee.flavorNotes}" required></label><br>
     <label>Brew Method: <input type="text" name="brewMethod" th:value="${coffee.brewMethod}" required></label><br>
 
     <button type="submit">Update Coffee</button>
