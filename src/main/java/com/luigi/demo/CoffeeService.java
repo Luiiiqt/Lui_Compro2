@@ -1,32 +1,39 @@
 package com.luigi.demo;
 
+
 import org.springframework.stereotype.Service;
+
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class CoffeeService {
     private List<Coffee> coffees;
     private final String FILE_NAME = "coffees.csv";
+
 
     public CoffeeService() {
         this.coffees = new ArrayList<>();
         readFromDisk(); // Load coffees from file on startup
     }
 
+
     // Return the list of all coffees
     public List<Coffee> getCoffees() {
         return coffees;
     }
+
 
     // Delete a coffee by its ID
     public void deleteCoffee(int id) {
         coffees.removeIf(c -> c.getId() == id);
         writeToDisk(); // Save after deletion
     }
+
 
     // Search coffees by keyword (in name, origin, or brew method)
     public List<Coffee> searchCoffee(String keyword) {
@@ -40,10 +47,12 @@ public class CoffeeService {
         ).collect(Collectors.toList());
     }
 
+
     // Get a specific coffee by ID
     public Coffee getCoffee(int id) {
         return coffees.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
+
 
     // Update a coffee entry by its ID
     public void updateCoffee(int id, Coffee updatedCoffee) {
@@ -56,11 +65,13 @@ public class CoffeeService {
         }
     }
 
+
     // Add a new coffee entry
     public void addCoffee(Coffee coffee) {
         coffees.add(coffee);
         writeToDisk(); // Save after adding
     }
+
 
     // Get the ID of the last coffee in the list
     public int getLastId() {
@@ -69,6 +80,7 @@ public class CoffeeService {
         }
         return coffees.get(coffees.size() - 1).getId();
     }
+
 
     // Write the coffee list to the CSV file
     public void writeToDisk() {
@@ -92,6 +104,7 @@ public class CoffeeService {
         }
     }
 
+
     // Read the coffee list from the CSV file
     public void readFromDisk() {
         File file = new File(FILE_NAME);
@@ -99,6 +112,7 @@ public class CoffeeService {
             System.out.println("File not found, starting fresh.");
             return;
         }
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -108,6 +122,7 @@ public class CoffeeService {
                     System.out.println("Skipping malformed line: " + line);
                     continue;
                 }
+
 
                 Coffee c = new Coffee();
                 c.setId(Integer.parseInt(data[0]));
