@@ -12,11 +12,9 @@
    --table-hover-color: #f0f4f8;
 }
 
-
-/* General Link Styling */
 a {
    text-decoration: none;
-   color: inherit; /* Ensures color is inherited from parent */
+   color: inherit;
    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
@@ -26,8 +24,6 @@ a:hover {
    text-decoration: underline;
 }
 
-
-/* Body Styling */
 body {
    text-align: center;
    font-family: var(--main-font);
@@ -37,8 +33,6 @@ body {
    margin: 0;
 }
 
-
-/* Header Styling */
 h1 {
    font-size: 2rem;
    margin-bottom: 20px;
@@ -46,15 +40,12 @@ h1 {
    text-align: center;
 }
 
-
-/* Table Styling */
 table {
    margin: 20px auto;
    border-collapse: collapse;
-   width: 90%; /* Ensures the table width doesn't stretch too much */
+   width: 90%;
    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 th, td {
    border: 1px solid var(--border-color);
@@ -62,25 +53,20 @@ th, td {
    text-align: center;
 }
 
-
 th {
    background-color: var(--primary-color);
    color: white;
    font-weight: bold;
 }
 
-
 tr:nth-child(even) {
    background-color: #f9f9f9;
 }
-
 
 tr:hover {
    background-color: var(--table-hover-color);
 }
 
-
-/* Actions Buttons */
 .actions a {
    text-decoration: none;
    padding: 8px 14px;
@@ -93,16 +79,13 @@ tr:hover {
    margin: 0 5px;
 }
 
-
 .actions a:first-child {
    background-color: var(--danger-color);
 }
 
-
 .actions a:nth-child(2) {
    background-color: var(--warning-color);
 }
-
 
 .actions a:hover {
    background-color: var(--primary-color);
