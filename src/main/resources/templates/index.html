@@ -1,40 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Coffee List</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
 <h1>Available Coffees</h1>
 
+<form>
+    <input type="text" name="search" placeholder="Search...">
+    <button>Search</button>
+</form>
+
+<a href="/new">Add New Coffee</a>
+
 <table border="1">
+    <thead>
     <tr>
-        <th>ID</th>
         <th>Coffee</th>
         <th>Type</th>
         <th>Size</th>
         <th>Price</th>
         <th>Roast Level</th>
+        <th>Origin</th>
+        <th>Decaf</th>
+        <th>Stock</th>
+        <th>Flavor Notes</th>
         <th>Brew Method</th>
         <th>Actions</th>
     </tr>
-    <tr th:each="coffee : ${coffees}">
-        <td th:text="${coffee.id}"></td>
-        <td th:text="${coffee.name}"></td>
-        <td th:text="${coffee.type}"></td>
-        <td th:text="${coffee.size}"></td>
-        <td th:text="${coffee.price}"></td>
-        <td th:text="${coffee.roastLevel}"></td>
-        <td th:text="${coffee.brewMethod}"></td>
-        <td>
-            <a th:href="@{/edit(id=${coffee.id})}">Edit</a> |
-            <a th:href="@{/delete(id=${coffee.id})}" onclick="return confirm('Are you sure?');">Delete</a>
-        </td>
-    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="coffee : ${coffees}">
+            <td th:text="${coffee.name}"></td>
+            <td th:text="${coffee.type}"></td>
+            <td th:text="${coffee.size}"></td>
+            <td th:text="${coffee.price}"></td>
+            <td th:text="${coffee.roastLevel}"></td>
+            <td th:text="${coffee.origin}"></td>
+            <td th:text="${coffee.decaf}"></td>
+            <td th:text="${coffee.stock}"></td>
+            <td th:text="${coffee.flavorNotes}"></td>
+            <td th:text="${coffee.brewMethod}"></td>
+            <td class="actions">
+                <a th:href="@{/edit(id=${coffee.id})}">Edit</a>
+                <a th:href="@{/delete(id=${coffee.id})}">Delete</a>
+            </td>
+        </tr>
+    </tbody>
 </table>
-
-<br>
-<a href="/add">Add New Coffee</a>
 
 </body>
 </html>

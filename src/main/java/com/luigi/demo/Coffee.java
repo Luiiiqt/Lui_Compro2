@@ -15,8 +15,22 @@ public class Coffee {
     private List<String> flavorNotes;
     private String brewMethod;
 
+    public Coffee() {
+
+    }
+
     // Full Constructor
-    public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
+    public Coffee(int id,
+                  String name,
+                  String type,
+                  String size,
+                  double price,
+                  String roastLevel,
+                  String origin,
+                  boolean isDecaf,
+                  int stock,
+                  List<String> flavorNotes,
+                  String brewMethod){
         this.id = id;
         this.name = name;
         this.type = type;
