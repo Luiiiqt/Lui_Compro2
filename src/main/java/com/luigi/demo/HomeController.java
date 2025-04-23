@@ -69,7 +69,6 @@ public class HomeController {
         return "redirect:/";
     }
 
-
     // Display the form for editing an existing coffee
     @GetMapping("/edit")
     public String edit(@RequestParam int id, Model model) {

@@ -15,7 +15,6 @@ public class CoffeeService {
     private List<Coffee> coffees;
     private final String FILE_NAME = "coffees.csv";
 
-
     public CoffeeService() {
         this.coffees = new ArrayList<>();
         readFromDisk(); // Load coffees from file on startup
