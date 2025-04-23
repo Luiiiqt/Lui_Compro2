@@ -1,84 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add New Coffee</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
-
 <h1>Add New Coffee</h1>
-
 
 <div>
     <form action="/save" method="post">
         <div>
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" required minlength="2" maxlength="50">
         </div>
-
 
         <div>
             <label for="type">Type</label>
-            <input type="text" id="type" name="type" required>
+            <select id="type" name="type" required>
+                <option value="Arabica">Arabica</option>
+                <option value="Robusta">Robusta</option>
+            </select>
         </div>
-
 
         <div>
             <label for="size">Size</label>
-            <input type="text" id="size" name="size" required>
+            <select id="size" name="size" required>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
         </div>
-
 
         <div>
             <label for="price">Price</label>
-            <input type="number" id="price" step="0.01" name="price" required>
+            <input type="number" id="price" name="price" required min="0.01" step="0.01">
         </div>
-
 
         <div>
             <label for="roastLevel">Roast Level</label>
-            <input type="text" id="roastLevel" name="roastLevel" required>
+            <select id="roastLevel" name="roastLevel" required>
+                <option value="Light">Light</option>
+                <option value="Medium">Medium</option>
+                <option value="Dark">Dark</option>
+            </select>
         </div>
-
 
         <div>
             <label for="origin">Origin</label>
-            <input type="text" id="origin" name="origin" required>
+            <input type="text" id="origin" name="origin" maxlength="100">
         </div>
-
 
         <div>
             <label>Decaf</label>
+            <input type="hidden" name="isDecaf" value="false">
             <input type="checkbox" id="isDecaf" name="isDecaf" value="true">
         </div>
 
-
         <div>
             <label for="stock">Stock</label>
-            <input type="number" id="stock" name="stock" required>
+            <input type="number" id="stock" name="stock" required min="0">
         </div>
 
-
         <div>
-            <label for="flavorNotes">Flavor Notes</label>
-            <input type="text" id="flavorNotes" name="flavorNotes" required>
+            <label>Flavor Notes</label><br>
+            <input type="checkbox" name="flavorNotes" value="Chocolate"> Chocolate<br>
+            <input type="checkbox" name="flavorNotes" value="Nutty"> Nutty<br>
+            <input type="checkbox" name="flavorNotes" value="Citrus"> Citrus<br>
+            <input type="checkbox" name="flavorNotes" value="Fruity"> Fruity<br>
         </div>
 
 
         <div>
             <label for="brewMethod">Brew Method</label>
-            <input type="text" id="brewMethod" name="brewMethod" required>
+            <select id="brewMethod" name="brewMethod" required>
+                <option value="Drip">Drip</option>
+                <option value="French Press">French Press</option>
+                <option value="Espresso">Espresso</option>
+            </select>
         </div>
+
         <button type="submit">Add Coffee</button>
     </form>
 </div>
 
-
 <br>
 <a href="/">Back to List</a>
-
 
 </body>
 </html>

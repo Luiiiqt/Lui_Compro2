@@ -47,23 +47,26 @@ public class HomeController {
             @RequestParam double price,
             @RequestParam String roastLevel,
             @RequestParam String origin,
-            @RequestParam(defaultValue = "false") boolean isDecaf,
+            @RequestParam(defaultValue = "false") Boolean isDecaf,
             @RequestParam int stock,
-            @RequestParam String flavorNotes,  // flavorNotes as a string input
+            @RequestParam(required = false) String[] flavorNotes,
             @RequestParam String brewMethod
     ) {
-        // Split flavorNotes by semicolon (assuming the user enters flavors like "chocolate; nutty")
-        List<String> flavorList = new ArrayList<>(Arrays.asList(flavorNotes.split(";")));
+        if (flavorNotes == null) {
+            flavorNotes = new String[0];
+        }
 
-
-        // Create a new Coffee object
-        Coffee c = new Coffee(coffeeService.getLastId() + 1,
-                name, type, size, price, roastLevel, origin, isDecaf, stock, flavorList, brewMethod
+        Coffee c = new Coffee(
+                coffeeService.getLastId() + 1,
+                name, type, size, price, roastLevel, origin,
+                Boolean.TRUE.equals(isDecaf),  // Safe boolean check
+                stock,
+                Arrays.asList(flavorNotes),
+                brewMethod
         );
 
-
-        coffeeService.addCoffee(c);  // Add the new coffee to the service
-        return "redirect:/";  // Redirect to the home page after saving
+        coffeeService.addCoffee(c);
+        return "redirect:/";
     }
 
 
@@ -79,10 +82,9 @@ public class HomeController {
         return "edit";  // Return the edit view for modifying the coffee
     }
 
-
     // Update an existing coffee entry
     @PostMapping("/update")
-    public String update(
+    public String updateCoffee(
             @RequestParam int id,
             @RequestParam String name,
             @RequestParam String type,
@@ -90,31 +92,25 @@ public class HomeController {
             @RequestParam double price,
             @RequestParam String roastLevel,
             @RequestParam String origin,
-            @RequestParam(defaultValue = "false") boolean isDecaf,
+            @RequestParam(defaultValue = "false") Boolean isDecaf,
             @RequestParam int stock,
-            @RequestParam String flavorNotes,  // flavorNotes as a string input
+            @RequestParam(required = false) List<String> flavorNotes,
             @RequestParam String brewMethod
     ) {
-        Coffee c = coffeeService.getCoffee(id);  // Retrieve the coffee by ID
-        if (c != null) {
-            // Set new values from the form input
-            c.setName(name);
-            c.setType(type);
-            c.setSize(size);
-            c.setPrice(price);
-            c.setRoastLevel(roastLevel);
-            c.setOrigin(origin);
-            c.setDecaf(isDecaf);
-            c.setStock(stock);
+        Coffee c = new Coffee();
+        c.setId(id);
+        c.setName(name);
+        c.setType(type);
+        c.setSize(size);
+        c.setPrice(price);
+        c.setRoastLevel(roastLevel);
+        c.setOrigin(origin);
+        c.setDecaf(Boolean.TRUE.equals(isDecaf));  // Safe boolean check
+        c.setStock(stock);
+        c.setFlavorNotes(flavorNotes != null ? flavorNotes : new ArrayList<>());
+        c.setBrewMethod(brewMethod);
 
-
-            // Split flavorNotes by semicolon and update the list
-            c.setFlavorNotes(new ArrayList<>(Arrays.asList(flavorNotes.split(";"))));
-
-
-            c.setBrewMethod(brewMethod);  // Set brew method
-            coffeeService.updateCoffee(id, c);  // Update the coffee in the service
-        }
-        return "redirect:/";  // Redirect to the home page after update
+        coffeeService.updateCoffee(id, c);
+        return "redirect:/";
     }
 }

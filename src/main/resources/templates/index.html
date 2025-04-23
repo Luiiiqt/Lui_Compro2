@@ -4,22 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Coffee List</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{css/style.css}" rel="stylesheet">
 </head>
 <body>
-
-
 <h1>Available Coffees</h1>
-
-
 <form>
     <input type="text" name="search" placeholder="Search...">
     <button>Search</button>
 </form>
 
-
 <a href="/new">Add New Coffee</a>
-
 
 <table border="1">
     <thead>
@@ -47,7 +41,7 @@
         <td th:text="${coffee.origin}"></td>
         <td th:text="${coffee.decaf}"></td>
         <td th:text="${coffee.stock}"></td>
-        <td th:text="${coffee.flavorNotes}"></td>
+        <td th:text="${#strings.arrayJoin(coffee.flavorNotes.toArray(), ', ')}"></td>
         <td th:text="${coffee.brewMethod}"></td>
         <td class="actions">
             <a th:href="@{/edit(id=${coffee.id})}">Edit</a>
@@ -56,7 +50,6 @@
     </tr>
     </tbody>
 </table>
-
 
 </body>
 </html>
